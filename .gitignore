@@ -1,0 +1,30 @@
+# ===== Python / Django =====
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Database (jangan commit — berisi data & akun admin)
+*.sqlite3
+db.sqlite3
+
+# Virtual environment (jangan commit — ribuan file & berat)
+.venv/
+venv/
+env/
+ENV/
+
+# File upload pengguna & hasil collectstatic
+/backend/media/
+/backend/staticfiles/
+
+# Rahasia / environment
+.env
+.env.*
+*.env
+
+# ===== OS / Editor =====
+.DS_Store
+Thumbs.db
+
+# ===== Log =====
+*.log

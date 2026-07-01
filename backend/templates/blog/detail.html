@@ -1,0 +1,375 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} — Imogi Indonesia{% endblock %}
+{% block description %}{{ post.excerpt }}{% endblock %}
+{% block body_class %}blog-details-page{% endblock %}
+{% block nav_blog_active %}active{% endblock %}
+
+{% block extra_head %}
+<style>
+  .blog-details-page .blog-details {
+    padding-top: 50px;
+  }
+
+  .blog-details-page .blog-details .post-img img {
+    border-radius: 16px;
+  }
+
+  .blog-details-page .blog-details .title {
+    font-size: 40px;
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+    margin: 28px 0 16px;
+  }
+
+  .blog-details-page .blog-details .meta-top {
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  }
+
+  .blog-details-page .blog-details .content {
+    max-width: 760px;
+  }
+
+  .blog-details-page .blog-details .content p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #475569;
+    margin-bottom: 1.4em;
+  }
+
+  /* Paragraf pembuka (lead) lebih menonjol */
+  .blog-details-page .blog-details .article-lead {
+    max-width: 760px;
+    font-size: 20px;
+    line-height: 1.7;
+    font-weight: 500;
+    color: var(--heading-color);
+    margin: 0 0 30px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  }
+
+  /* Drop cap di huruf pertama artikel */
+  .blog-details-page .blog-details .content>p:first-of-type::first-letter {
+    float: left;
+    font-family: var(--heading-font);
+    font-size: 64px;
+    line-height: 0.82;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin: 6px 12px 0 0;
+  }
+
+  /* Daftar dalam artikel */
+  .blog-details-page .blog-details .content ul,
+  .blog-details-page .blog-details .content ol {
+    max-width: 760px;
+    margin: 0 0 1.4em;
+    padding-left: 1.3em;
+  }
+
+  .blog-details-page .blog-details .content li {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #475569;
+    margin-bottom: 8px;
+  }
+
+  .blog-details-page .blog-details .content h3 {
+    font-size: 24px;
+    margin-top: 38px;
+    margin-bottom: 14px;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .blog-details-page .blog-details .content h3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 4px;
+    border-radius: 4px;
+    background-color: var(--accent-color);
+  }
+
+  .blog-details-page .blog-details .content img {
+    border-radius: 14px;
+    margin: 16px 0;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .blog-details-page .blog-details blockquote {
+    border: 0;
+    border-left: 4px solid var(--accent-color);
+    background-color: color-mix(in srgb, var(--accent-color), transparent 95%);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 30px 0;
+  }
+
+  .blog-details-page .blog-details blockquote p {
+    font-size: 19px;
+    font-style: italic;
+    color: var(--heading-color);
+    margin: 0;
+    max-width: none;
+  }
+
+  .blog-details-page .blog-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .blog-details-page .blog-back:hover {
+    gap: 12px;
+  }
+
+  /* Sidebar bersih (tanpa kotak) */
+  .blog-details-page .blog-aside {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+
+  .blog-details-page .blog-aside-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin: 0 0 16px;
+  }
+
+  /* Pencarian */
+  .blog-details-page .blog-aside-search {
+    display: flex;
+    background-color: color-mix(in srgb, var(--default-color), transparent 95%);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .blog-details-page .blog-aside-search:focus-within {
+    border-color: var(--accent-color);
+  }
+
+  .blog-details-page .blog-aside-search input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: none;
+    padding: 11px 14px;
+    font-size: 14.5px;
+    background: transparent;
+    color: var(--heading-color);
+  }
+
+  .blog-details-page .blog-aside-search button {
+    border: 0;
+    background: transparent;
+    color: color-mix(in srgb, var(--default-color), transparent 40%);
+    padding: 0 14px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .blog-details-page .blog-aside-search button:hover {
+    color: var(--accent-color);
+  }
+
+  .blog-details-page .blog-aside-posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .blog-details-page .blog-aside-post {
+    display: flex;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .blog-details-page .blog-aside-thumb {
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+    color: color-mix(in srgb, var(--accent-color), transparent 40%);
+    font-size: 20px;
+  }
+
+  .blog-details-page .blog-aside-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-details-page .blog-aside-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .blog-details-page .blog-aside-post-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--heading-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s;
+  }
+
+  .blog-details-page .blog-aside-post:hover .blog-aside-post-title {
+    color: var(--accent-color);
+  }
+
+  .blog-details-page .blog-aside-date {
+    font-size: 12px;
+    color: color-mix(in srgb, var(--default-color), transparent 45%);
+    margin-top: 3px;
+  }
+
+  /* Kategori */
+  .blog-details-page .blog-aside-cats {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .blog-details-page .blog-aside-cats a {
+    font-size: 14.5px;
+    color: color-mix(in srgb, var(--default-color), transparent 25%);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .blog-details-page .blog-aside-cats a:hover {
+    color: var(--accent-color);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section id="blog-details" class="blog-details section">
+  <div class="container">
+
+    <a href="{% url 'blog:list' %}" class="blog-back"><i class="bi bi-arrow-left"></i> Kembali ke Blog</a>
+
+    <div class="row gy-4">
+
+      <div class="col-lg-8">
+        <article class="article">
+
+          {% if post.image %}
+          <div class="post-img">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
+          </div>
+          {% endif %}
+
+          <h2 class="title">{{ post.title }}</h2>
+
+          <div class="meta-top">
+            <ul>
+              <li class="d-flex align-items-center"><i class="bi bi-person"></i> <span>{{ post.author }}</span></li>
+              <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <time
+                  datetime="{{ post.published_at|date:'Y-m-d' }}">{{ post.published_at|date:'d M Y' }}</time></li>
+              {% if post.category %}
+              <li class="d-flex align-items-center"><i class="bi bi-folder"></i> <a
+                  href="{% url 'blog:category' post.category.slug %}">{{ post.category.name }}</a></li>
+              {% endif %}
+            </ul>
+          </div><!-- End meta top -->
+
+          {% if post.excerpt %}
+          <p class="article-lead">{{ post.excerpt }}</p>
+          {% endif %}
+
+          <div class="content">
+            {{ post.content|safe }}
+          </div><!-- End post content -->
+
+        </article>
+      </div>
+
+      <div class="col-lg-4">
+        <aside class="blog-aside">
+
+          <div class="blog-aside-widget">
+            <h3 class="blog-aside-title">Pencarian</h3>
+            <form action="{% url 'blog:list' %}" method="get" class="blog-aside-search">
+              <input type="text" name="q" placeholder="Cari artikel..." value="{{ request.GET.q }}">
+              <button type="submit" aria-label="Cari"><i class="bi bi-search"></i></button>
+            </form>
+          </div>
+
+          {% if related_posts %}
+          <div class="blog-aside-widget">
+            <h3 class="blog-aside-title">Artikel Terkait</h3>
+            <ul class="blog-aside-posts">
+              {% for rp in related_posts %}
+              <li>
+                <a href="{{ rp.get_absolute_url }}" class="blog-aside-post">
+                  <span class="blog-aside-thumb">
+                    {% if rp.image %}<img src="{{ rp.image.url }}" alt="">{% else %}<i
+                      class="bi bi-journal-richtext"></i>{% endif %}
+                  </span>
+                  <span class="blog-aside-info">
+                    <span class="blog-aside-post-title">{{ rp.title }}</span>
+                    <span class="blog-aside-date">{{ rp.published_at|date:'d M Y' }}</span>
+                  </span>
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+          <div class="blog-aside-widget">
+            <h3 class="blog-aside-title">Kategori</h3>
+            <ul class="blog-aside-cats">
+              {% for cat in categories %}
+              <li><a href="{% url 'blog:category' cat.slug %}">{{ cat.name }}</a></li>
+              {% empty %}
+              <li><span>Belum ada kategori</span></li>
+              {% endfor %}
+            </ul>
+          </div>
+
+        </aside>
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- /Blog Details Section -->
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} — Imogi Indonesia{% endblock %}
+{% block description %}{{ product.subtitle }} — {{ product.description|truncatewords:24 }}{% endblock %}
+{% block body_class %}product-detail-page{% endblock %}
+
+{% block page_title %}{% endblock %}
+
+{% block content %}
+<section class="pd-detail section">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="pd-head" data-aos="fade-up">
+      <a href="/#tabs" class="pd-back"><i class="bi bi-arrow-left"></i> Semua Produk</a>
+      <div class="pd-head-row">
+        <span class="pd-icon">{% if product.logo %}<img src="{{ product.logo.url }}" alt="{{ product.name }}"
+            class="pd-icon-img">{% else %}<i class="{{ product.icon }}"></i>{% endif %}</span>
+        <div>
+          <span class="pd-eyebrow">Produk Imogi</span>
+          <h1>{{ product.name }}</h1>
+          <p class="pd-subtitle">{{ product.subtitle }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Konten + fitur -->
+    <div class="pd-grid">
+
+      <div class="pd-body" data-aos="fade-up">
+        {% if product.image %}
+        <div class="pd-hero">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        {% endif %}
+        {% if product.detail %}
+        <div class="pd-content">{{ product.detail|safe }}</div>
+        {% else %}
+        <p class="pd-lead">{{ product.description }}</p>
+        {% endif %}
+      </div>
+
+      <aside class="pd-aside" data-aos="fade-up" data-aos-delay="100">
+        {% if product.feature_list %}
+        <div class="pd-features">
+          <h3>Fitur Utama</h3>
+          <ul>
+            {% for f in product.feature_list %}
+            <li><i class="bi bi-check-circle-fill"></i> {{ f }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        <div class="pd-cta">
+          <h4>Tertarik dengan {{ product.name }}?</h4>
+          <p>Konsultasikan kebutuhan Anda — gratis & tanpa komitmen.</p>
+          <a href="https://wa.me/6285311552401?text=Halo%20Imogi%20Indonesia%2C%20saya%20tertarik%20dengan%20{{ product.name|urlencode }}"
+            target="_blank" rel="noopener" class="pd-cta-btn">Konsultasi Gratis <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Produk lainnya -->
+    {% if other_products %}
+    <div class="pd-others">
+      <h2 class="pd-others-title">Produk Lainnya</h2>
+      <div class="pd-others-grid">
+        {% for op in other_products %}
+        <a href="{{ op.get_absolute_url }}" class="pd-other-card">
+          <span class="pd-other-icon"><i class="{{ op.icon }}"></i></span>
+          <div class="pd-other-info">
+            <h4>{{ op.name }}</h4>
+            <p>{{ op.subtitle }}</p>
+          </div>
+          <i class="bi bi-arrow-right pd-other-arrow"></i>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

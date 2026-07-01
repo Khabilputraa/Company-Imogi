@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <base href="/">
+  <title>Imogi Indonesia — Implementasi & Konsultan ERPNext</title>
+  <meta name="description"
+    content="Imogi Indonesia adalah mitra implementasi dan konsultan ERPNext yang membantu perusahaan mendigitalisasi operasional bisnis: keuangan, inventory, manufaktur, HR, hingga CRM dalam satu sistem terintegrasi.">
+  <meta name="keywords"
+    content="ERPNext Indonesia, implementasi ERPNext, konsultan ERPNext, Frappe, ERP, software akuntansi, digitalisasi bisnis">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Presento
+  * Template URL: https://bootstrapmade.com/presento-bootstrap-corporate-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="/" class="logo d-flex align-items-center me-auto">
+        <img src="assets/img/logo.png" alt="Logo Imogi Indonesia" class="logo-default">
+        <img src="assets/img/imogi.png" alt="Logo Imogi Indonesia" class="logo-white">
+        <div class="logo-text">
+          <h1 class="sitename">Imogi Indonesia<span>.</span></h1>
+          <span class="logo-sub">PT. Inovasi Terbaik Bangsa</span>
+        </div>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Beranda</a></li>
+          <li class="dropdown"><a href="#tabs"><span>Produk Unggulan</span> <i
+                class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              {% for p in products %}
+              <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Imogi School</span> <i
+                class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              {% for m in school_materials %}
+              <li><a href="{{ m.get_url }}" target="_blank" rel="noopener">{{ m.title }}</a></li>
+              {% empty %}
+              <li><a href="#">Segera Hadir</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted"
+        href="https://wa.me/6285311552401?text=Halo%20Imogi%20Indonesia%2C%20saya%20ingin%20berkonsultasi%20tentang%20ERPNext"
+        target="_blank" rel="noopener">Konsultasi Gratis</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+      <img src="assets/img/hero-bg-1.png" alt="" class="hero-slide">
+      <img src="assets/img/hero-bg-2.png" alt="" class="hero-slide">
+      <img src="assets/img/hero-bg-3.png" alt="" class="hero-slide">
+      <img src="assets/img/hero-bg-4.png" alt="" class="hero-slide">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2 data-aos="fade-up" data-aos-delay="100">Transformasi Bisnis Anda dengan ERPNext</h2>
+            <p data-aos="fade-up" data-aos-delay="200">Imogi Indonesia membantu perusahaan Anda mengintegrasikan seluruh
+              operasional — keuangan, inventory, manufaktur, HR, hingga CRM — dalam satu sistem ERP yang andal dan hemat
+              biaya.</p>
+            <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+              <a href="https://wa.me/6285311552401?text=Halo%20Imogi%20Indonesia%2C%20saya%20ingin%20berkonsultasi%20tentang%20ERPNext"
+                class="btn-get-started" target="_blank" rel="noopener">Mulai Konsultasi</a>
+              <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Lihat
+                  Demo</span></a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="clients-label">Dipercaya Oleh</span>
+        <h2>Klien Kami</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container-fluid clients-slider-full p-0" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 2500,
+              "autoplay": {
+                "delay": 0,
+                "disableOnInteraction": false
+              },
+              "allowTouchMove": false,
+              "slidesPerView": "auto",
+              "spaceBetween": 80,
+              "breakpoints": {
+                "320": {
+                  "spaceBetween": 50
+                },
+                "640": {
+                  "spaceBetween": 70
+                },
+                "992": {
+                  "spaceBetween": 100
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            {% for c in clients %}
+            <div class="swiper-slide"><img src="{{ c.logo.url }}" class="img-fluid" alt="{{ c.name }}"></div>
+            {% endfor %}
+            {% for c in clients %}
+            <div class="swiper-slide"><img src="{{ c.logo.url }}" class="img-fluid" alt="{{ c.name }}"></div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Clients Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section section-bg dark-background">
+
+      <!-- Section Title -->
+      <div class="container section-title process-title" data-aos="fade-up">
+        <span class="process-label">Proses Implementasi</span>
+        <h2>5 Langkah Menuju Transformasi Digital</h2>
+        <p>Proses implementasi yang terstruktur dan terbukti berhasil</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="process-timeline">
+
+          <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+            <div class="process-icon"><i class="bi bi-chat-dots"></i></div>
+            <h4>Konsultasi</h4>
+            <p>Analisis kebutuhan & pain points bisnis</p>
+          </div>
+
+          <div class="process-step" data-aos="fade-up" data-aos-delay="250">
+            <div class="process-icon"><i class="bi bi-vector-pen"></i></div>
+            <h4>Desain</h4>
+            <p>Blueprint modul & workflow yang dikustomisasi</p>
+          </div>
+
+          <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+            <div class="process-icon"><i class="bi bi-code-slash"></i></div>
+            <h4>Implementasi</h4>
+            <p>Setup ERPNext + custom module + migrasi data</p>
+          </div>
+
+          <div class="process-step" data-aos="fade-up" data-aos-delay="550">
+            <div class="process-icon"><i class="bi bi-rocket-takeoff"></i></div>
+            <h4>Go-Live</h4>
+            <p>Training tim + launching bertahap</p>
+          </div>
+
+          <div class="process-step" data-aos="fade-up" data-aos-delay="700">
+            <div class="process-icon"><i class="bi bi-headset"></i></div>
+            <h4>Support</h4>
+            <p>Dukungan teknis & optimasi berkelanjutan</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Tabs Section -->
+    <section id="tabs" class="tabs section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Produk Terbaik IMOGI</h2>
+        <p>Aplikasi bisnis berbasis ERPNext yang dapat langsung digunakan untuk operasional harian Anda</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          {% for p in products %}
+          <div class="col-lg-4 col-md-6" id="{{ p.anchor_id }}" data-aos="fade-up"
+            data-aos-delay="{{ forloop.counter }}00">
+            <div class="ready-card h-100">
+              <div class="ready-card-head">
+                <div class="ready-icon">{% if p.logo %}<img src="{{ p.logo.url }}" alt="{{ p.name }}"
+                    class="ready-icon-img">{% else %}<i class="{{ p.icon }}"></i>{% endif %}</div>
+                <div>
+                  <h4>{{ p.name }}</h4>
+                  <span class="ready-sub">{{ p.subtitle }}</span>
+                </div>
+              </div>
+              <p class="ready-desc">{{ p.description }}</p>
+              <ul class="ready-features">
+                {% for f in p.feature_list|slice:":5" %}
+                <li><i class="bi bi-check2"></i> {{ f }}</li>
+                {% endfor %}
+              </ul>
+              {% if p.feature_list|length > 5 %}
+              <p class="ready-more">+{{ p.feature_list|length|add:"-5" }} fitur lainnya</p>
+              {% endif %}
+              <a href="{{ p.get_absolute_url }}" class="ready-btn">Pelajari Lebih Lanjut <i
+                  class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+    </section><!-- /Tabs Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section section-bg dark-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Layanan Kami</h2>
+        <p>Solusi ERPNext lengkap untuk setiap tahap perjalanan digital bisnis Anda</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-clipboard-data icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title">Konsultasi & Analisis Bisnis</h4>
+                <p class="description">Kami memetakan proses bisnis Anda dan merancang blueprint ERP yang tepat sebelum
+                  implementasi dimulai.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-gear-wide-connected icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title">Implementasi ERPNext</h4>
+                <p class="description">Instalasi, konfigurasi modul, dan setup sistem sesuai kebutuhan operasional
+                  perusahaan Anda hingga siap pakai.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-code-square icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title">Kustomisasi & Pengembangan</h4>
+                <p class="description">Custom app, doctype, workflow, dan integrasi API agar ERPNext benar-benar pas
+                  dengan proses unik bisnis Anda.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-arrow-left-right icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title">Migrasi Data</h4>
+                <p class="description">Pindahkan data dari sistem lama atau spreadsheet ke ERPNext secara aman, rapi,
+                  dan terverifikasi.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-mortarboard icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title">Pelatihan Pengguna</h4>
+                <p class="description">Training terstruktur dan dokumentasi agar seluruh tim Anda percaya diri
+                  menggunakan sistem baru.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-hdd-network icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title">Support & Hosting</h4>
+                <p class="description">Dukungan teknis berkelanjutan, hosting cloud yang stabil, backup rutin, dan
+                  pemeliharaan sistem.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>ERPNext vs ERP Komersial</h2>
+        <p>Bandingkan fitur dan biaya ERPNext dengan solusi ERP komersial lainnya</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="compare-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th class="cmp-feature">Fitur</th>
+                <th><span class="cmp-icon"><img src="assets/img/compare/sap.svg" alt="SAP" class="cmp-logo"></span><span
+                    class="cmp-name">SAP Business One</span></th>
+                <th><span class="cmp-icon"><img src="assets/img/compare/oracle.svg" alt="Oracle"
+                      class="cmp-logo"></span><span class="cmp-name">Oracle NetSuite</span></th>
+                <th><span class="cmp-icon"><img src="assets/img/compare/microsoft.svg" alt="Microsoft"
+                      class="cmp-logo"></span><span class="cmp-name">Microsoft Dynamics</span></th>
+                <th class="cmp-highlight">
+                  <span class="cmp-ribbon"><i class="bi bi-star-fill"></i> Rekomendasi</span>
+                  <span class="cmp-icon cmp-icon-accent"><img src="assets/img/compare/erpnext.svg" alt="ERPNext"
+                      class="cmp-logo"></span>
+                  <span class="cmp-name">ERPNext</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cmp-feature">Lisensi</td>
+                <td>Mahal (Rp 500jt+)</td>
+                <td>Mahal (Rp 400jt+)</td>
+                <td>Sedang (Rp 300jt+)</td>
+                <td class="cmp-highlight">Gratis (Open Source)</td>
+              </tr>
+              <tr>
+                <td class="cmp-feature">Source Code</td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td class="cmp-highlight"><i class="bi bi-check-lg cmp-yes"></i></td>
+              </tr>
+              <tr>
+                <td class="cmp-feature">Tanpa Vendor Lock-in</td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td class="cmp-highlight"><i class="bi bi-check-lg cmp-yes"></i></td>
+              </tr>
+              <tr>
+                <td class="cmp-feature">Biaya Implementasi</td>
+                <td>Sangat Tinggi</td>
+                <td>Tinggi</td>
+                <td>Sedang</td>
+                <td class="cmp-highlight">Sangat Terjangkau</td>
+              </tr>
+              <tr>
+                <td class="cmp-feature">Modul Lengkap</td>
+                <td><i class="bi bi-check-lg cmp-yes"></i></td>
+                <td><i class="bi bi-check-lg cmp-yes"></i></td>
+                <td><i class="bi bi-check-lg cmp-yes"></i></td>
+                <td class="cmp-highlight"><i class="bi bi-check-lg cmp-yes"></i></td>
+              </tr>
+              <tr>
+                <td class="cmp-feature">Dukungan Lokal</td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td class="cmp-highlight"><i class="bi bi-check-lg cmp-yes"></i></td>
+              </tr>
+              <tr>
+                <td class="cmp-feature">Implementasi Cepat</td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td><i class="bi bi-x-lg cmp-no"></i></td>
+                <td class="cmp-highlight"><i class="bi bi-check-lg cmp-yes"></i></td>
+              </tr>
+              <tr>
+                <td class="cmp-feature">Skalabilitas</td>
+                <td><i class="bi bi-check-lg cmp-yes"></i></td>
+                <td><i class="bi bi-check-lg cmp-yes"></i></td>
+                <td><i class="bi bi-check-lg cmp-yes"></i></td>
+                <td class="cmp-highlight"><i class="bi bi-check-lg cmp-yes"></i></td>
+              </tr>
+              <tr class="cmp-cta-row">
+                <td class="cmp-feature"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="cmp-highlight">
+                  <a href="https://wa.me/6285311552401?text=Halo%20Imogi%20Indonesia%2C%20saya%20ingin%20berkonsultasi%20tentang%20ERPNext"
+                    target="_blank" rel="noopener" class="cmp-cta-btn">Konsultasi Gratis</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="compare-hint"><i class="bi bi-arrow-left-right"></i> Geser tabel untuk lihat perbandingan lengkap</p>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section section-bg dark-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Testimoni</h2>
+        <p>Apa kata klien kami tentang pengalaman bekerja sama dengan Imogi Indonesia</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="atestimonials" id="atestimonials">
+
+          <!-- Tumpukan foto beranimasi -->
+          <div class="atestimonial-stack">
+            {% for t in testimonials %}
+            <img class="atestimonial-photo" src="{{ t.photo.url }}" alt="{{ t.name }}">
+            {% endfor %}
+          </div>
+
+          <!-- Teks + kontrol -->
+          <div class="atestimonials-body">
+            <div class="atestimonial-slides">
+
+              {% for t in testimonials %}
+              <div class="atestimonial-slide">
+                <div class="atestimonial-stars">
+                  {% for _ in t.filled_stars %}<i class="bi bi-star-fill"></i>{% endfor %}
+                  {% for _ in t.empty_stars %}<i class="bi bi-star"></i>{% endfor %}
+                </div>
+                <h3 class="atestimonial-name">{{ t.name }}</h3>
+                <p class="atestimonial-role">{{ t.role }} · {{ t.company }}</p>
+                <p class="atestimonial-quote">"{{ t.quote }}"</p>
+              </div>
+              {% endfor %}
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Testimonials Section -->
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Pertanyaan yang Sering Diajukan</h2>
+        <p>Hal-hal yang umum ditanyakan seputar implementasi ERPNext bersama Imogi Indonesia</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row justify-content-center">
+
+          <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="faq-container">
+
+              <div class="faq-item faq-active">
+                <h3>Apa itu ERPNext dan apa bedanya dengan ERP lain?</h3>
+                <div class="faq-content">
+                  <p>ERPNext adalah sistem ERP open-source berbasis Frappe Framework yang mencakup keuangan, inventory,
+                    manufaktur, HR, CRM, dan banyak lagi dalam satu platform. Dibanding ERP berbayar seperti SAP atau
+                    Oracle, ERPNext jauh lebih hemat biaya tanpa biaya lisensi per modul, namun tetap kaya fitur dan
+                    dapat dikustomisasi sepenuhnya.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3>Berapa lama proses implementasi ERPNext?</h3>
+                <div class="faq-content">
+                  <p>Tergantung kompleksitas bisnis. Untuk paket Starter biasanya 2–4 minggu, paket Business 1–3 bulan,
+                    sedangkan Enterprise dengan banyak kustomisasi bisa 3–6 bulan. Kami akan memberikan timeline yang
+                    jelas setelah sesi analisis kebutuhan.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3>Apakah ERPNext bisa disesuaikan dengan proses bisnis kami?</h3>
+                <div class="faq-content">
+                  <p>Bisa. ERPNext sangat fleksibel — kami dapat membuat custom doctype, workflow persetujuan, field
+                    tambahan, laporan khusus, hingga aplikasi terpisah sesuai kebutuhan spesifik perusahaan Anda.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3>Apakah ERPNext sudah mendukung perpajakan Indonesia?</h3>
+                <div class="faq-content">
+                  <p>Ya. Kami mengonfigurasi PPN, PPh, faktur pajak, serta perhitungan BPJS dan PPh 21 untuk payroll
+                    agar sesuai dengan regulasi yang berlaku di Indonesia.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3>Bagaimana dengan keamanan dan backup data?</h3>
+                <div class="faq-content">
+                  <p>Kami menyediakan opsi hosting cloud yang aman maupun on-premise sesuai preferensi Anda, lengkap
+                    dengan enkripsi, hak akses berbasis peran, serta backup otomatis berkala untuk memastikan data Anda
+                    selalu aman.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3>Apakah ada dukungan setelah sistem berjalan?</h3>
+                <div class="faq-content">
+                  <p>Tentu. Kami menyediakan layanan support, maintenance, update sistem, dan optimasi performa secara
+                    berkelanjutan. Paket Business dan Enterprise sudah termasuk masa support dengan respons prioritas.
+                  </p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+            </div>
+
+          </div><!-- End Faq Column-->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Faq Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="contact-eyebrow">Hubungi Kami</span>
+        <h2>Mari Mulai Transformasi Digital Anda</h2>
+        <p>Tim ahli kami siap membantu menjawab kebutuhan bisnis dan implementasi ERPNext perusahaan Anda.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="contact-card">
+
+          <!-- Kiri: informasi kantor -->
+          <div class="contact-info">
+            <div>
+              <h3>Informasi Kantor</h3>
+              <p class="contact-info-lead">Kunjungi kantor kami atau hubungi melalui saluran resmi di bawah ini untuk
+                respons yang lebih cepat.</p>
+
+              <ul class="contact-info-list">
+                <li>
+                  <span class="contact-info-icon"><i class="bi bi-geo-alt"></i></span>
+                  <div>
+                    <h4>Alamat</h4>
+                    <p>Jln. Gempol Raya No.6, RT.10/RW.2, Ceger, Kec. Cipayung, Jakarta Timur 13820</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="contact-info-icon"><i class="bi bi-envelope"></i></span>
+                  <div>
+                    <h4>Email</h4>
+                    <p><a href="mailto:imogi.indonesia@gmail.com">imogi.indonesia@gmail.com</a></p>
+                  </div>
+                </li>
+                <li>
+                  <span class="contact-info-icon"><i class="bi bi-telephone"></i></span>
+                  <div>
+                    <h4>Telepon / WhatsApp</h4>
+                    <p><a href="https://wa.me/6285311552401" target="_blank" rel="noopener">+62 853-1155-2401</a></p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="contact-hours">
+              <p class="contact-hours-label">Jam Operasional</p>
+              <p>Senin &ndash; Jumat: 09.00 &ndash; 17.00 WIB</p>
+            </div>
+          </div>
+
+          <!-- Kanan: form -->
+          <div class="contact-form-panel">
+            <h3>Kirim Pesan</h3>
+            <form action="/contact/submit/" method="post" class="php-email-form">
+              {% csrf_token %}
+              <!-- Honeypot anti-spam: tersembunyi dari manusia, hanya diisi bot -->
+              <div class="d-none" aria-hidden="true">
+                <input type="text" name="website" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="contact-field-row">
+                <div class="contact-field">
+                  <label>Nama Lengkap</label>
+                  <input type="text" name="name" placeholder="Nama Anda" required="">
+                </div>
+                <div class="contact-field">
+                  <label>Nama Perusahaan</label>
+                  <input type="text" name="company" placeholder="PT. Perusahaan Anda">
+                </div>
+              </div>
+
+              <div class="contact-field">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="email@perusahaan.com" required="">
+              </div>
+
+              <div class="contact-field">
+                <label>Subjek Kebutuhan</label>
+                <select name="subject" required="">
+                  <option value="Konsultasi ERPNext">Konsultasi ERPNext</option>
+                  <option value="Permintaan Proposal / Penawaran">Permintaan Proposal / Penawaran</option>
+                  <option value="Kerja Sama Bisnis (Kemitraan)">Kerja Sama Bisnis (Kemitraan)</option>
+                  <option value="Layanan &amp; Support">Layanan &amp; Support</option>
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+              </div>
+
+              <div class="contact-field">
+                <label>Pesan Anda</label>
+                <textarea name="message" rows="4"
+                  placeholder="Jelaskan singkat kebutuhan proyek atau pertanyaan Anda..." required=""></textarea>
+              </div>
+
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Pesan Anda telah terkirim. Terima kasih!</div>
+
+              <button type="submit" class="contact-submit">Kirim Pesan Sekarang</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container">
+      <div class="ft-grid">
+
+        <div class="ft-brand">
+          <a href="/" class="ft-logo">
+            <img src="assets/img/imogi.png" alt="Logo Imogi Indonesia">
+            <span>Imogi Indonesia</span>
+          </a>
+          <p class="ft-tagline">Mitra implementasi &amp; konsultan ERPNext untuk mendigitalisasi operasional bisnis Anda
+            — dari keuangan hingga CRM dalam satu sistem.</p>
+          <a href="https://wa.me/6285311552401?text=Halo%20Imogi%20Indonesia%2C%20saya%20ingin%20berkonsultasi%20tentang%20ERPNext"
+            target="_blank" rel="noopener" class="ft-cta">Konsultasi Gratis <i class="bi bi-arrow-right"></i></a>
+        </div>
+
+        <div class="ft-col">
+          <h4>Tautan</h4>
+          <ul>
+            <li><a href="#hero">Beranda</a></li>
+            <li><a href="#tabs">Produk Unggulan</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#contact">Kontak</a></li>
+          </ul>
+        </div>
+
+        <div class="ft-col">
+          <h4>Produk</h4>
+          <ul>
+            {% for p in products %}
+            <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="ft-col ft-contact">
+          <h4>Kontak</h4>
+          <ul>
+            <li><i class="bi bi-geo-alt"></i> <span>Jln. Gempol Raya No.6, Ceger, Kec. Cipayung, Jakarta Timur
+                13820</span></li>
+            <li><i class="bi bi-telephone"></i> <span>+62 853-1155-2401</span></li>
+            <li><i class="bi bi-envelope"></i> <span>imogi.indonesia@gmail.com</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="ft-bottom">
+        <p>&copy; {% now "Y" %} Imogi Indonesia — PT. Inovasi Terbaik Bangsa. All rights reserved.</p>
+        <ul class="ft-bottom-links">
+          <li><a href="#hero">Beranda</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </div>
+
+      <div class="credits" style="display: none;">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a
+          href="https://themewagon.com">ThemeWagon</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/6285311552401?text=Halo%20Imogi%20Indonesia%2C%20saya%20ingin%20berkonsultasi%20tentang%20ERPNext"
+    class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat via WhatsApp"><i
+      class="bi bi-whatsapp"></i></a>
+
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

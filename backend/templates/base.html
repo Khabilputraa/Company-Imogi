@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <base href="/">
+  <title>{% block title %}Imogi Indonesia — Implementasi & Konsultan ERPNext{% endblock %}</title>
+  <meta name="description"
+    content="{% block description %}Imogi Indonesia — mitra implementasi dan konsultan ERPNext.{% endblock %}">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="/" class="logo d-flex align-items-center me-auto">
+        <img src="assets/img/logo.png" alt="Logo Imogi Indonesia">
+        <div class="logo-text">
+          <h1 class="sitename">Imogi Indonesia<span>.</span></h1>
+          <span class="logo-sub">PT. Inovasi Terbaik Bangsa</span>
+        </div>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/#hero">Beranda</a></li>
+          <li class="dropdown"><a href="/#tabs"><span>Produk Unggulan</span> <i
+                class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              {% for p in products %}
+              <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Imogi School</span> <i
+                class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              {% for m in school_materials %}
+              <li><a href="{{ m.get_url }}" target="_blank" rel="noopener">{{ m.title }}</a></li>
+              {% empty %}
+              <li><a href="#">Segera Hadir</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li><a href="{% url 'blog:list' %}" class="{% block nav_blog_active %}{% endblock %}">Blog</a></li>
+          <li><a href="/#contact">Kontak</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted"
+        href="https://wa.me/6285311552401?text=Halo%20Imogi%20Indonesia%2C%20saya%20ingin%20berkonsultasi%20tentang%20ERPNext"
+        target="_blank" rel="noopener">Konsultasi Gratis</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+    {% block page_title %}{% endblock %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container">
+      <div class="ft-grid">
+
+        <div class="ft-brand">
+          <a href="/" class="ft-logo">
+            <img src="assets/img/imogi.png" alt="Logo Imogi Indonesia">
+            <span>Imogi Indonesia</span>
+          </a>
+          <p class="ft-tagline">Mitra implementasi &amp; konsultan ERPNext untuk mendigitalisasi operasional bisnis Anda
+            — dari keuangan hingga CRM dalam satu sistem.</p>
+          <a href="https://wa.me/6285311552401?text=Halo%20Imogi%20Indonesia%2C%20saya%20ingin%20berkonsultasi%20tentang%20ERPNext"
+            target="_blank" rel="noopener" class="ft-cta">Konsultasi Gratis <i class="bi bi-arrow-right"></i></a>
+        </div>
+
+        <div class="ft-col">
+          <h4>Tautan</h4>
+          <ul>
+            <li><a href="/#hero">Beranda</a></li>
+            <li><a href="/#tabs">Produk Unggulan</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/#contact">Kontak</a></li>
+          </ul>
+        </div>
+
+        <div class="ft-col">
+          <h4>Produk</h4>
+          <ul>
+            {% for p in products %}
+            <li><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="ft-col ft-contact">
+          <h4>Kontak</h4>
+          <ul>
+            <li><i class="bi bi-geo-alt"></i> <span>Jln. Gempol Raya No.6, Ceger, Kec. Cipayung, Jakarta Timur
+                13820</span></li>
+            <li><i class="bi bi-telephone"></i> <span>+62 853-1155-2401</span></li>
+            <li><i class="bi bi-envelope"></i> <span>imogi.indonesia@gmail.com</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="ft-bottom">
+        <p>&copy; {% now "Y" %} Imogi Indonesia — PT. Inovasi Terbaik Bangsa. All rights reserved.</p>
+        <ul class="ft-bottom-links">
+          <li><a href="/#hero">Beranda</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/#contact">Kontak</a></li>
+        </ul>
+      </div>
+
+      <div class="credits" style="display: none;">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a
+          href="https://themewagon.com">ThemeWagon</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/6285311552401?text=Halo%20Imogi%20Indonesia%2C%20saya%20ingin%20berkonsultasi%20tentang%20ERPNext"
+    class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat via WhatsApp"><i
+      class="bi bi-whatsapp"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+  {% block extra_js %}{% endblock %}
+
+</body>
+
+</html>

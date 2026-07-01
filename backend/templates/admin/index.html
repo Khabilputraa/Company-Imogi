@@ -1,0 +1,79 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+{% include "unfold/helpers/site_branding.html" %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Kartu statistik -->
+<div class="flex flex-wrap gap-4 mb-8">
+  {% for s in imogi_stats %}
+  <a href="{{ s.link }}" style="flex: 1 1 200px"
+    class="bg-white rounded-default shadow-xs border border-base-200 p-6 flex items-center gap-4 transition-all hover:border-base-300 hover:shadow-md dark:bg-base-900 dark:border-base-800 dark:hover:border-base-700">
+    <span class="material-symbols-outlined text-primary-600" style="font-size: 36px">{{ s.icon }}</span>
+    <div class="min-w-0">
+      <div class="text-2xl font-semibold text-important">{{ s.value }}</div>
+      <div class="text-sm text-base-500">{{ s.label }}</div>
+      {% if s.sub %}<div class="text-sm text-base-400 mt-0.5">{{ s.sub }}</div>{% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+<!-- Ringkasan terbaru -->
+<div class="flex flex-wrap gap-4 mb-8">
+
+  <div style="flex: 1 1 320px"
+    class="bg-white rounded-default shadow-xs border border-base-200 p-6 dark:bg-base-900 dark:border-base-800">
+    <h2 class="font-semibold text-[15px] text-important mb-4">Pesan Kontak Terbaru</h2>
+    {% for m in imogi_recent_messages %}
+    <a href="{% url 'admin:contact_contactmessage_change' m.pk %}"
+      class="flex items-center gap-3 py-2 border-b border-base-200 last:border-0 dark:border-base-800">
+      <span class="material-symbols-outlined text-base-400" style="font-size: 20px">mail</span>
+      <div class="min-w-0">
+        <div class="text-sm font-semibold text-important truncate">{{ m.name }} — {{ m.subject|default:"(tanpa subjek)" }}
+        </div>
+        <div class="text-sm text-base-500 truncate">{{ m.email }} · {{ m.created_at|date:"d M Y H:i" }}</div>
+      </div>
+      {% if not m.is_read %}<span class="ml-auto text-sm text-primary-600">baru</span>{% endif %}
+    </a>
+    {% empty %}
+    <p class="text-sm text-base-500">Belum ada pesan masuk.</p>
+    {% endfor %}
+  </div>
+
+  <div style="flex: 1 1 320px"
+    class="bg-white rounded-default shadow-xs border border-base-200 p-6 dark:bg-base-900 dark:border-base-800">
+    <h2 class="font-semibold text-[15px] text-important mb-4">Artikel Terbaru</h2>
+    {% for p in imogi_recent_posts %}
+    <a href="{% url 'admin:blog_blogpost_change' p.pk %}"
+      class="flex items-center gap-3 py-2 border-b border-base-200 last:border-0 dark:border-base-800">
+      <span class="material-symbols-outlined text-base-400" style="font-size: 20px">newspaper</span>
+      <div class="min-w-0">
+        <div class="text-sm font-semibold text-important truncate">{{ p.title }}</div>
+        <div class="text-sm text-base-500 truncate">{{ p.published_at|date:"d M Y" }}{% if p.category %} ·
+          {{ p.category.name }}{% endif %}</div>
+      </div>
+      {% if not p.is_published %}<span class="ml-auto text-sm text-base-400">draf</span>{% endif %}
+    </a>
+    {% empty %}
+    <p class="text-sm text-base-500">Belum ada artikel.</p>
+    {% endfor %}
+  </div>
+
+</div>
+
+<!-- Daftar aplikasi default + riwayat -->
+<div class="flex flex-col lg:flex-row lg:gap-8">
+  <div class="grow">
+    {% include "unfold/helpers/app_list_default.html" %}
+  </div>
+
+  {% include "unfold/helpers/history.html" %}
+</div>
+
+{% endblock %}

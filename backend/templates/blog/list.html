@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Blog — Imogi Indonesia{% endblock %}
+{% block description %}Wawasan seputar ERPNext, efisiensi proses, dan transformasi digital dari Imogi Indonesia.{% endblock %}
+{% block body_class %}blog-page{% endblock %}
+{% block nav_blog_active %}active{% endblock %}
+
+{% block page_title %}{% endblock %}
+
+{% block content %}
+<section class="blog-index section">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="blog-index-head" data-aos="fade-up">
+      <span class="blog-eyebrow">Blog Imogi</span>
+      <h1>{% if search_query %}Hasil Pencarian{% elif active_category %}{{ active_category.name }}{% else %}Wawasan &amp;
+        Insight ERPNext{% endif %}</h1>
+      <p>{% if search_query %}Menampilkan artikel untuk "<strong>{{ search_query }}</strong>".{% else %}Tips, panduan, dan
+        studi kasus seputar implementasi ERPNext untuk pertumbuhan bisnis Anda.{% endif %}</p>
+    </div>
+
+    <!-- Toolbar: filter kategori + pencarian -->
+    <div class="blog-toolbar" data-aos="fade-up" data-aos-delay="100">
+      <div class="blog-filter">
+        <a href="{% url 'blog:list' %}" class="blog-chip {% if not active_category %}active{% endif %}">Semua</a>
+        {% for cat in categories %}
+        <a href="{% url 'blog:category' cat.slug %}"
+          class="blog-chip {% if active_category and active_category.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a>
+        {% endfor %}
+      </div>
+      <form action="{% url 'blog:list' %}" method="get" class="blog-search" role="search">
+        <i class="bi bi-search"></i>
+        <input type="text" name="q" value="{{ search_query }}" placeholder="Cari artikel..." aria-label="Cari artikel">
+      </form>
+    </div>
+
+    <!-- Artikel unggulan -->
+    {% if show_featured %}
+    {% with fp=posts.0 %}
+    <a href="{{ fp.get_absolute_url }}" class="blog-featured" data-aos="fade-up" data-aos-delay="150">
+      <div class="blog-featured-img">
+        {% if fp.image %}
+        <img src="{{ fp.image.url }}" alt="{{ fp.title }}">
+        {% else %}
+        <span class="blog-card-noimg"><i class="bi bi-journal-richtext"></i></span>
+        {% endif %}
+      </div>
+      <div class="blog-featured-body">
+        <div class="blog-featured-tags">
+          <span class="blog-featured-badge">Artikel Unggulan</span>
+          {% if fp.category %}<span class="blog-card-cat">{{ fp.category.name }}</span>{% endif %}
+        </div>
+        <h2 class="blog-featured-title">{{ fp.title }}</h2>
+        <p class="blog-featured-excerpt">{{ fp.excerpt }}</p>
+        <div class="blog-card-meta">
+          <span>{{ fp.author }}</span>
+          <span class="blog-card-dot">·</span>
+          <span>{{ fp.published_at|date:'d M Y' }}</span>
+        </div>
+        <span class="blog-featured-more">Baca selengkapnya <i class="bi bi-arrow-right"></i></span>
+      </div>
+    </a>
+    {% endwith %}
+    {% endif %}
+
+    <!-- Grid artikel -->
+    <div class="blog-grid" data-aos="fade-up" data-aos-delay="200">
+      {% for post in posts %}
+      {% if not show_featured or not forloop.first %}
+      <article class="blog-card">
+        <a href="{{ post.get_absolute_url }}" class="blog-card-img">
+          {% if post.image %}
+          <img src="{{ post.image.url }}" alt="{{ post.title }}">
+          {% else %}
+          <span class="blog-card-noimg"><i class="bi bi-journal-richtext"></i></span>
+          {% endif %}
+        </a>
+        <div class="blog-card-body">
+          {% if post.category %}<span class="blog-card-cat">{{ post.category.name }}</span>{% endif %}
+          <h3 class="blog-card-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+          <p class="blog-card-excerpt">{{ post.excerpt }}</p>
+          <div class="blog-card-meta">
+            <span>{{ post.author }}</span>
+            <span class="blog-card-dot">·</span>
+            <span>{{ post.published_at|date:'d M Y' }}</span>
+          </div>
+        </div>
+      </article>
+      {% endif %}
+      {% empty %}
+      <p class="blog-empty">{% if search_query %}Tidak ada artikel yang cocok dengan "{{ search_query }}".{% else %}Belum
+        ada artikel yang dipublikasikan.{% endif %}</p>
+      {% endfor %}
+    </div>
+
+    <!-- Paginasi -->
+    {% if page_obj.paginator.num_pages > 1 %}
+    <nav class="blog-pagination d-flex justify-content-center mt-5" aria-label="Navigasi halaman blog">
+      <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+            aria-label="Sebelumnya">&laquo;</a></li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"
+            aria-label="Berikutnya">&raquo;</a></li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}
